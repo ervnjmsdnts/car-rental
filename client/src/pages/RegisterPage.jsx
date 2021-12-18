@@ -9,7 +9,7 @@ import {
   Link,
   Image,
 } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -17,6 +17,8 @@ export const RegisterPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +37,8 @@ export const RegisterPage = () => {
       );
 
       if (response.data) {
-        console.log(response.data);
+        console.log("Registered User");
+        navigate("/login");
       }
     } catch (error) {
       console.log(error);
